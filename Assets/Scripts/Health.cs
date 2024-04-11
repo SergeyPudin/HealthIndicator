@@ -10,10 +10,11 @@ public class Health : MonoBehaviour, IChangeValue
     private bool _isDead = false;
 
     public event UnityAction<int, int> OnValueChanged;
+    public event UnityAction<int, int> Reset;
 
     private void Start()
     {
-        OnValueChanged?.Invoke(_currentHealth, _maxHealthValue);
+        Reset?.Invoke(_currentHealth, _maxHealthValue);
     }
 
     public void TakeDamage(int damage)

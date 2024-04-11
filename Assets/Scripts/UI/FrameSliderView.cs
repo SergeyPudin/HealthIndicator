@@ -1,12 +1,11 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(IChangeValue))]
-public class TextValueView : MonoBehaviour
+public class FrameSliderView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private float _maxValue;
+    [SerializeField] private Slider _slider;
 
+    private int _maxValue;
     private float _currentValue;
     private IChangeValue _changeValue;
 
@@ -24,7 +23,7 @@ public class TextValueView : MonoBehaviour
     private void OnDisable()
     {
         _changeValue.OnValueChanged -= UpdateValue;
-        _changeValue.Reset -= SetStartValues;
+        _changeValue.Reset += SetStartValues;
     }
 
     private void SetStartValues(int value, int maxValue)
@@ -32,7 +31,8 @@ public class TextValueView : MonoBehaviour
         _maxValue = maxValue;
         _currentValue = value;
 
-        Display();
+        _slider.maxValue = maxValue;
+        _slider.value = value;
     }
 
     public void UpdateValue(int value, int maxValue)
@@ -45,6 +45,7 @@ public class TextValueView : MonoBehaviour
 
     private void Display()
     {
-        _text.text = $"{_currentValue} / {_maxValue}";
+        _slider.maxValue = _maxValue;
+        _slider.value = _currentValue;
     }
 }
