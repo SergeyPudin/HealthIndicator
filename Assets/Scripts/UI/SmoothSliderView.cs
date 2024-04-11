@@ -2,35 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SmoothSliderView : MonoBehaviour
+public class SmoothSliderView : AbstractSliderViewer
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private float _slideDuration;
-
-    private int _maxValue;
-    private float _currentValue;
-    private IChangeValue _changeValue;
+     
     private Coroutine _moveCoroutine;
     private float _target;
-
-    private void Awake()
-    {
-        _changeValue = GetComponent<IChangeValue>();     
-    }
-           
-    private void OnEnable()
-    {
-        _changeValue.OnValueChanged += UpdateValue;
-        _changeValue.Reset += SetStartValues;
-    }
-
-    private void OnDisable()
-    {
-        _changeValue.OnValueChanged -= UpdateValue;
-        _changeValue.Reset -= SetStartValues;
-    }
-
-    public void UpdateValue(int value, int maxValue)
+        
+    protected override void UpdateValue(int value, int maxValue)
     {
         _target = value;
         _maxValue = maxValue;
@@ -38,7 +18,7 @@ public class SmoothSliderView : MonoBehaviour
         Display();
     }
 
-    private void SetStartValues(int value, int maxValue)
+    protected override void SetStartValues(int value, int maxValue)
     {
         _maxValue = maxValue;
         _currentValue = value;
@@ -47,7 +27,7 @@ public class SmoothSliderView : MonoBehaviour
         _slider.value = value;
     }
 
-    private void Display()
+    protected override void Display()
     {
         _slider.maxValue = _maxValue;
 
