@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SmoothSliderView : AbstractSliderViewer
+public class SmoothSliderView : AbstractIndicatorViewer
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private float _slideDuration;

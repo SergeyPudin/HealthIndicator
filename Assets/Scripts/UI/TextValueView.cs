@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(IChangeValue))]
-public class TextValueView : AbstractSliderViewer
+public class TextValueView : AbstractIndicatorViewer
 {
     [SerializeField] private TMP_Text _text;
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(IChangeValue))]
-public abstract class AbstractSliderViewer : MonoBehaviour
+public abstract class AbstractIndicatorViewer : MonoBehaviour
 {
     protected int _maxValue;
     protected float _currentValue;

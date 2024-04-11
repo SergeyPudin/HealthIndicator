@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FrameSliderView : AbstractSliderViewer
+public class FrameSliderView : AbstractIndicatorViewer
 {
     [SerializeField] private Slider _slider;
        
