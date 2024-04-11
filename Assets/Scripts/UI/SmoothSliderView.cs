@@ -6,22 +6,14 @@ public class SmoothSliderView : AbstractIndicatorViewer
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private float _slideDuration;
-     
-    private Coroutine _moveCoroutine;
-    private float _target;
-        
-    protected override void UpdateValue(int value, int maxValue)
-    {
-        _target = value;
-        _maxValue = maxValue;
 
-        Display();
-    }
+    private Coroutine _moveCoroutine;
+    private float _previusValue;
 
     protected override void SetStartValues(int value, int maxValue)
     {
-        _maxValue = maxValue;
-        _currentValue = value;
+        MaxValue = maxValue;
+        _previusValue = value;
 
         _slider.maxValue = maxValue;
         _slider.value = value;
@@ -29,7 +21,7 @@ public class SmoothSliderView : AbstractIndicatorViewer
 
     protected override void Display()
     {
-        _slider.maxValue = _maxValue;
+        _slider.maxValue = MaxValue;
 
         _moveCoroutine = StartCoroutine(SmoothSlide());
     }
@@ -40,13 +32,13 @@ public class SmoothSliderView : AbstractIndicatorViewer
 
         while (elapsed < _slideDuration)
         {
-            _slider.value = Mathf.MoveTowards(_currentValue, _target, elapsed / _slideDuration);
+            _slider.value = Mathf.MoveTowards(_previusValue, CurrentValue, elapsed / _slideDuration);
             elapsed += Time.deltaTime;
 
-        yield return null;
+            yield return null;
         }
 
-        _currentValue = _target;
+        _previusValue = CurrentValue;
         _moveCoroutine = null;
     }
 }

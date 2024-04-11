@@ -8,14 +8,14 @@ public class TextValueView : AbstractIndicatorViewer
 
     protected override void SetStartValues(int value, int maxValue)
     {
-        _maxValue = maxValue;
-        _currentValue = value;
+        MaxValue = maxValue;
+        CurrentValue = value;
 
         Display();
     }
 
     protected override void Display()
     {
-        _text.text = $"{_currentValue} / {_maxValue}";
+        _text.text = $"{CurrentValue} / {MaxValue}";
     }
 }

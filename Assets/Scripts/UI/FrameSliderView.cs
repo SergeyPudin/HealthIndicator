@@ -7,8 +7,8 @@ public class FrameSliderView : AbstractIndicatorViewer
        
     protected override void SetStartValues(int value, int maxValue)
     {
-        _maxValue = maxValue;
-        _currentValue = value;
+        MaxValue = maxValue;
+        CurrentValue = value;
 
         _slider.maxValue = maxValue;
         _slider.value = value;
@@ -16,7 +16,7 @@ public class FrameSliderView : AbstractIndicatorViewer
 
     protected override void Display()
     {
-        _slider.maxValue = _maxValue;
-        _slider.value = _currentValue;
+        _slider.maxValue = MaxValue;
+        _slider.value = CurrentValue;
     }
 }
